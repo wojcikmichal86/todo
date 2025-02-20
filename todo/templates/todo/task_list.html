@@ -4,6 +4,9 @@
     <title>Todo List</title>
 </head>
 <body>
+    <button onclick="window.location.href='{% url 'add_task' %}'" class="btn btn-primary">
+    Add New Task
+    </button>
     <h1>My Todo List</h1>
     <ul>
         {% for task in tasks %}
