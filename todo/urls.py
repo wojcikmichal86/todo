@@ -4,7 +4,8 @@ from .views import (
     HelloAPI,
     TaskListCreateAPIView,
     TaskRetrieveUpdateDestroyAPIView,
-    openapi_view
+    openapi_view,
+    TaskDetailView
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('api/tasks/<int:pk>/', TaskRetrieveUpdateDestroyAPIView.as_view(), name='task-detail'),
     path("openapi.json", openapi_view),
     path("api/token-auth/", obtain_auth_token),
+    path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
 ]
