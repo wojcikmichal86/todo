@@ -15,6 +15,11 @@
       "get": {
         "operationId": "getTasks",
         "summary": "Pobierz listę zadań",
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista zadań",
@@ -34,6 +39,11 @@
       "post": {
         "operationId": "addTask",
         "summary": "Dodaj nowe zadanie",
+        "security": [
+          {
+            "TokenAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -53,6 +63,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
     "schemas": {
       "Task": {
         "type": "object",
