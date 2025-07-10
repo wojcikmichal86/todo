@@ -63,7 +63,8 @@
     },
     "/api/tasks/{id}/": {
       "get": {
-        "summary": "Pobierz konkretne zadanie",
+        "operationId": "getTaskById",
+        "summary": "Pobierz zadanie po ID",
         "security": [
           {
             "TokenAuth": []
@@ -95,48 +96,9 @@
           }
         }
       },
-      "put": {
-        "summary": "Zaktualizuj całe zadanie",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Task"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Zaktualizowano zadanie",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Task"
-                }
-              }
-            }
-          }
-        }
-      },
       "patch": {
-        "summary": "Częściowo zaktualizuj zadanie",
+        "operationId": "updateTask",
+        "summary": "Zaktualizuj zadanie po ID",
         "security": [
           {
             "TokenAuth": []
@@ -157,26 +119,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Task"
+                "$ref": "#/components/schemas/NewTask"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Częściowo zaktualizowano zadanie",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Task"
-                }
-              }
-            }
+            "description": "Zadanie zaktualizowane"
+          },
+          "404": {
+            "description": "Nie znaleziono zadania"
           }
         }
       },
       "delete": {
-        "summary": "Usuń zadanie",
+        "operationId": "deleteTask",
+        "summary": "Usuń zadanie po ID",
         "security": [
           {
             "TokenAuth": []
@@ -194,7 +153,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Zadanie usunięte"
+            "description": "Zadanie zostało usunięte"
           },
           "404": {
             "description": "Nie znaleziono zadania"
@@ -229,10 +188,6 @@
           "comment": {
             "type": "string",
             "nullable": true
-          },
-          "completed": {
-            "type": "boolean",
-            "default": false
           }
         }
       },
