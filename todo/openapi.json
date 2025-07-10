@@ -15,11 +15,7 @@
       "get": {
         "operationId": "getTasks",
         "summary": "Pobierz listę zadań",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
+        "security": [{ "TokenAuth": [] }],
         "responses": {
           "200": {
             "description": "Lista zadań",
@@ -27,9 +23,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Task"
-                  }
+                  "items": { "$ref": "#/components/schemas/Task" }
                 }
               }
             }
@@ -39,25 +33,17 @@
       "post": {
         "operationId": "addTask",
         "summary": "Dodaj nowe zadanie",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
+        "security": [{ "TokenAuth": [] }],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewTask"
-              }
+              "schema": { "$ref": "#/components/schemas/NewTask" }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Zadanie zostało dodane"
-          }
+          "201": { "description": "Zadanie zostało dodane" }
         }
       }
     },
@@ -65,19 +51,13 @@
       "get": {
         "operationId": "getTaskById",
         "summary": "Pobierz zadanie po ID",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
+        "security": [{ "TokenAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "responses": {
@@ -85,79 +65,53 @@
             "description": "Szczegóły zadania",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Task"
-                }
+                "schema": { "$ref": "#/components/schemas/Task" }
               }
             }
           },
-          "404": {
-            "description": "Nie znaleziono zadania"
-          }
+          "404": { "description": "Nie znaleziono zadania" }
         }
       },
       "patch": {
         "operationId": "updateTask",
         "summary": "Zaktualizuj zadanie po ID",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
+        "security": [{ "TokenAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewTask"
-              }
+              "schema": { "$ref": "#/components/schemas/NewTask" }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Zadanie zaktualizowane"
-          },
-          "404": {
-            "description": "Nie znaleziono zadania"
-          }
+          "200": { "description": "Zadanie zaktualizowane" },
+          "404": { "description": "Nie znaleziono zadania" }
         }
       },
       "delete": {
         "operationId": "deleteTask",
         "summary": "Usuń zadanie po ID",
-        "security": [
-          {
-            "TokenAuth": []
-          }
-        ],
+        "security": [{ "TokenAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "integer"
-            }
+            "schema": { "type": "integer" }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Zadanie zostało usunięte"
-          },
-          "404": {
-            "description": "Nie znaleziono zadania"
-          }
+          "204": { "description": "Zadanie zostało usunięte" },
+          "404": { "description": "Nie znaleziono zadania" }
         }
       }
     }
@@ -174,39 +128,17 @@
       "Task": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          },
-          "due_date": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          },
-          "comment": {
-            "type": "string",
-            "nullable": true
-          }
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "completed": { "type": "boolean" }
         }
       },
       "NewTask": {
         "type": "object",
         "required": ["title"],
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "due_date": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          },
-          "comment": {
-            "type": "string",
-            "nullable": true
-          }
+          "title": { "type": "string" },
+          "completed": { "type": "boolean" }
         }
       }
     }
