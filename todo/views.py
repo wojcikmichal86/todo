@@ -1,4 +1,6 @@
 from rest_framework import generics
+from django.http import FileResponse
+import os
 from .models import Task
 from .serializers import TaskSerializer
 from rest_framework.views import APIView
@@ -17,3 +19,7 @@ class TaskRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class HelloAPI(APIView):
     def get(self, request):
         return Response({"message": "Hello from API"})
+
+def openapi_view(request):
+    path = os.path.join(os.path.dirname(__file__), "openapi.json")
+    return FileResponse(open(path, 'rb'), content_type='application/json')
