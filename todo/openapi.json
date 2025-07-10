@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/tasks": {
+    "/api/tasks/": {
       "get": {
         "operationId": "getTasks",
         "summary": "Pobierz listę zadań",
