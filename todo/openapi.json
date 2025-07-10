@@ -60,7 +60,7 @@
           "id": {
             "type": "integer"
           },
-          "name": {
+          "title": {
             "type": "string"
           },
           "due_date": {
@@ -76,9 +76,9 @@
       },
       "NewTask": {
         "type": "object",
-        "required": ["name"],
+        "required": ["title"],
         "properties": {
-          "name": {
+          "title": {
             "type": "string"
           },
           "due_date": {
